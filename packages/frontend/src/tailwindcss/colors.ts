@@ -18,7 +18,7 @@ export const neutralScale = {
   300: "#F7F7F8",
   400: "#F5F5F5",
   500: "#EFEFF1",
-  600: "#EAECF0",
+  600: "#EAEBF0",
   700: "#DDDFE4",
   800: "#A5ACBA",
   900: "#878D97",
@@ -121,7 +121,7 @@ export const purpleScale = {
   950: "#33059F",
 };
 
-export const brand = {
+export const brandColor = {
   hollywoodCerise: "#DA1259",
   vividCerise: "#EC008C",
   midBlue: "#2F6ABC",
@@ -149,57 +149,28 @@ export const baseColors = {
 
   primary: primary,
 
-  error: error,
-  warning: warning,
-  success: success,
-
-  neutral: grayScale,
-  red: redScale,
-  orange: neutralScale,
-  yellow: yellowScale,
-  teal: tealScale,
-  blue: blueScale,
-  lime: limeScale,
-  green: greenScale,
-  cyan: cyanScale,
-  sky: skyScale,
-  indigo: indigoScale,
+  neutral: neutralScale,
+  gray: grayScale,
+  info: infoScale,
+  error: errorScale,
+  warning: warningScale,
+  success: successScale,
   purple: purpleScale,
-  pink: pinkScale,
-  magenta: magentaScale,
 
-  risk: riskColors,
-  severity: severityColors,
+  brand: brandColor,
 };
 
 export const iconColor = {
   gray: grayScale[400],
   black: black,
-  blue: blueScale[950],
+  blue: infoScale[950],
 };
 
 export const textColor = {
-  default: grayScale[900],
-  secondary: grayScale[600],
+  default: grayScale[700],
   disabled: grayScale[400],
-  link: blueScale[600],
 
-  ["dark-bg"]: {
-    DEFAULT: white,
-    secondary: grayScale[500],
-    disabled: grayScale[600],
-    link: blueScale[300],
-
-    red: redScale[400],
-    orange: orangeScale[300],
-    yellow: yellowScale[300],
-    teal: tealScale[300],
-    blue: blueScale[300],
-    ["blue-steel"]: blueSteelScale[300],
-  },
   ...baseColors,
-  risk: riskColors,
+
   icon: iconColor,
 };
-
-export const navBackground = blueSteelScale[900];

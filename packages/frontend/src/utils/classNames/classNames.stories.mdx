@@ -1,0 +1,21 @@
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Utils/ClassNames" />
+
+# Class Names
+
+`classNames` simplifies combining class names by omiting falsy values and joining all of the non-falsy class names.
+
+```tsx
+import { classNames } from "@panwds/react-ui";
+
+export function Example() {
+  const className = classNames(
+    "here are some default class names",
+    onlyWhenThisIsTruthy && "yep it is truthy",
+    maybeUseTernaries ? "yep" : "nope"
+  );
+
+  return <div className={className} />;
+}
+```
