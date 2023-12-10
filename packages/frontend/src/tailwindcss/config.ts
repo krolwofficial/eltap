@@ -34,6 +34,11 @@ export const config = {
       "8xl": ["60px", { letterSpacing: "-1%", lineHeight: "60px" }],
       "9xl": ["64px", { letterSpacing: "-2%", lineHeight: "68px" }],
     },
+    extend: {
+      spacing: {
+        "4.5": "18px",
+      },
+    },
   },
   plugins: [],
 };

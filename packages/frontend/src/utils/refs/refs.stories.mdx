@@ -1,0 +1,22 @@
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Utils/Refs" />
+
+# Refs
+
+## Merge Refs
+
+`mergeRefs` accepts an array of refs and returns a single, combined ref that applies all the inner refs when applied.
+
+```tsx
+import { mergeRefs } from "./";
+
+export function Example(): ReactElement {
+  const refA = useRef<HTMLDivElement>(null);
+  const refB = useRef<HTMLDivElement>(null);
+
+  const mergedRefs = mergeRefs<HTMLDivElement>([refA, refB]);
+
+  return <div ref={mergedRefs} />;
+}
+```
