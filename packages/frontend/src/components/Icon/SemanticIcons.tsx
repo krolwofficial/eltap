@@ -1,5 +1,6 @@
 import React from "react";
-import { classNames } from "../../utils";
+import { ProgressCircleIcon } from "./components/ProgressCircleIcon";
+import { ChevronIcon } from "./components/ChevronIcon";
 
 export type SemanticIconProps = Omit<any, "children">;
 
@@ -14,21 +15,23 @@ export const MenuIcon = ({
   ...iconProps
 }: MenuIconProps) => {
   return (
-    <span
-      className={classNames(
-        "tw-ml-1 tw-w-5 tw-h-5 tw-grid tw-items-center tw-justify-items-center",
-        buttonType == "form-select" && "tw-absolute tw-right-1.5"
-      )}
-    >
-      {/* <CaretDownIcon
-        ariaLabel={"Menu Icon Label"}}
-        size="xs"
+    <span>
+      <ChevronIcon
         {...iconProps}
-        className={`tw-transform tw-transition-transform tw-duration-200 ${
+        className={`tw-transform tw-transition-transform tw-duration-0 ${
           isOpen && "tw-rotate-180"
         }`}
-      /> */}
+      />
     </span>
   );
 };
-MenuIcon.displayName = "MenuIcon";
+
+export const LoadingIcon = ({ ...iconProps }: SemanticIconProps) => {
+  return (
+    <ProgressCircleIcon
+      className="tw-animate-spin"
+      {...iconProps}
+      ariaLabel={"Loading Icon label"}
+    />
+  );
+};
