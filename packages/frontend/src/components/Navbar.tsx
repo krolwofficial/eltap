@@ -15,7 +15,7 @@ const Navbar = () => {
         <MaxWidthWrapper>
           <div className="tw-border-b tw-border-neutral-700 max-w-screen-xl	tw-flex tw-justify-center ">
             <RowWrapper>
-              <div className="tw-flex tw-h-16 tw-items-centertw-w-full">
+              <div className="tw-flex tw-h-16 tw-items-center tw-w-full ">
                 <div className="tw-ml-4 tw-relative tw-w-28 tw-h-8">
                   <Image
                     className="tw-w-16 "

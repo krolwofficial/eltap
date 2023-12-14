@@ -38,6 +38,12 @@ export const config = {
       spacing: {
         "4.5": "18px",
       },
+      minWidth: {
+        "235": "235px",
+      },
+      filter: {
+        black: "brightness(0)",
+      },
     },
   },
   plugins: [],

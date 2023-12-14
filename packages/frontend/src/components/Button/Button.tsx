@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactNode, useEffect, useRef } from "react";
+import React, { forwardRef, ReactNode, useRef, useState } from "react";
 import { classNames, mergeRefs, testIdGen } from "../../utils";
 import { MenuIcon } from "../Icon";
 import isIconOnly from "./isIconOnly";
@@ -28,10 +28,6 @@ export interface ButtonProps
   iconAfter?: ReactNode;
   isFixed?: boolean;
   isMenu?: boolean;
-  /**
-   * Use with `isMenu`, determines the direction of the menu item
-   */
-  isOpen?: boolean;
   size?: keyof typeof buttonSizes;
   buttonType?: "default" | "form-select" | "icon-only";
 }
@@ -48,14 +44,10 @@ function makeClassName(props: ButtonProps): string {
   const {
     addClassName,
     disabled,
-    icon,
-    iconAfter,
     fullWidth,
     isMenu,
-    isOpen,
     size = "md",
     appearance = "primary",
-    buttonType = "default",
   } = props;
 
   const defaultClassNames = classNames(
@@ -79,14 +71,12 @@ function makeClassName(props: ButtonProps): string {
     sizeClassName,
     disabled ? "tw-cursor-not-allowed" : null,
     typeClassName[appearance],
-    fullWidth ? "tw-w-full tw-flex-1" : null,
-    isMenu && isOpen && "tw-z-10"
+    fullWidth ? "tw-w-full tw-flex-1" : null
   );
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (props: ButtonProps, userRef) => {
-    /* eslint-disable @typescript-eslint/no-unused-vars */
     const {
       addClassName,
       appearance,
@@ -99,18 +89,21 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       iconAfter,
       isFixed,
       isMenu,
-      isOpen,
       size,
       buttonType,
       ...rest
     } = props;
-    /* eslint-enable @typescript-eslint/no-unused-vars */
 
     validateProps(props);
     const className = makeClassName(props);
+    const [isOpen, setIsOpen] = useState(false);
     const ariaProps = isMenu ? { ["aria-expanded"]: isOpen } : {};
     const buttonRef = useRef<HTMLButtonElement>(null);
     const ref = mergeRefs([buttonRef, userRef]);
+
+    const toggleIsOpen = () => {
+      setIsOpen(!isOpen);
+    };
 
     return (
       <button
@@ -124,6 +117,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...rest}
         disabled={disabled}
         className={className}
+        onClick={toggleIsOpen}
       >
         {icon && (
           <span
@@ -145,7 +139,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             {iconAfter}
           </span>
         )}
-        {isMenu && <MenuIcon isOpen={isOpen} buttonType={buttonType} />}
+        {isMenu && (
+          <MenuIcon
+            addClassName="tw-ml-2 tw-mt-0.5 tw-filter-black"
+            isOpen={isOpen}
+            buttonType={buttonType}
+          />
+        )}
       </button>
     );
   }

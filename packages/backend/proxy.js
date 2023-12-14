@@ -32,7 +32,6 @@ app.get("/getOrderData", cors(corsOptions), async (req, res) => {
   const url = `https://api-test.eltap.com/api/v1/Analytics/daily-order-data?clientId=${clientId}&startDate=${startDate}&endDate=${endDate}`;
 
   try {
-    console.log('first')
     const response = await fetch(url);
 
     if (!response.ok) {

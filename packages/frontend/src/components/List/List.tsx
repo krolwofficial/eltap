@@ -40,7 +40,7 @@ export const List = forwardRef<HTMLUListElement, ListProps>(
     const shouldRender = useShouldRender(isOpen);
 
     const className = classNames(
-      "tw-absolute tw-w-full tw-box-border tw-m-0 tw-py-1 tw-border-solid tw-border-neutral-700 tw-border tw-rounded tw-overflow-auto focus:tw-outline-none tw-shadow-popover tw-transition-opacity",
+      "tw-bg-white tw-absolute tw-w-full tw-box-border tw-m-0 tw-py-1 tw-border-solid tw-border-neutral-700 tw-border tw-rounded tw-overflow-auto focus:tw-outline-none tw-shadow-popover tw-transition-opacity",
       "tw-text-default dark:tw-text-gray-100",
       isOpen ? "tw-z-20" : "tw-opacity-0 tw-z-0"
     );
