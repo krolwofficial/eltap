@@ -7,7 +7,7 @@ import validateProps from "./validateProps";
 import type { ButtonHTMLAttributes } from "react";
 import { Text } from "../Typography";
 
-export type ButtonAppearances = "primary";
+export type ButtonAppearances = "primary" | "iconOnly";
 
 const buttonSizes = {
   lg: "tw-text-base tw-h-10",
@@ -22,6 +22,7 @@ export interface ButtonProps
   buttonPosition?: "left" | "middle" | "right";
   dataTestId?: string;
   disabled?: boolean;
+  iconOnly?: boolean;
   fullWidth?: boolean;
   icon?: ReactNode;
   iconAfter?: ReactNode;
@@ -32,7 +33,7 @@ export interface ButtonProps
    */
   isOpen?: boolean;
   size?: keyof typeof buttonSizes;
-  buttonType?: "default" | "form-select";
+  buttonType?: "default" | "form-select" | "icon-only";
 }
 
 const defaultProps: Partial<ButtonProps> = {
@@ -56,46 +57,20 @@ function makeClassName(props: ButtonProps): string {
     appearance = "primary",
     buttonType = "default",
   } = props;
-  const iconOnly = isIconOnly(props);
 
   const defaultClassNames = classNames(
     "tw-cursor-pointer tw-whitespace-nowrap tw-rounded tw-leading-none tw-outline-none tw-flex tw-items-center tw-relative tw-box-content "
-    // "tw-px-2 tw-py-3 tw-border-solid tw-cursor-pointer tw-whitespace-nowrap tw-box-border tw-rounded tw-leading-none tw-outline-none tw-flex tw-items-center tw-relative tw-max-w-full focus-visible:tw-outline-2 focus-visible:tw-outline-blue-500 dark:focus-visible:tw-outline-blue-300 focus-visible:tw-outline-offset-1 tw-border-black "
   );
 
   const sizeClassName = {
     sm: "tw-px-3 tw-py-2 tw-h-5",
     md: "tw-px-2.5 tw-py-4 tw-h-1.5",
     lg: "tw-px-4 tw-py-4.5 tw-h-1.5",
-    // lg:
-    //   iconOnly && isMenu
-    //     ? "tw-text-sm tw-h-10"
-    //     : iconOnly
-    //     ? "tw-text-sm tw-h-10 tw-w-10"
-    //     : "tw-text-sm tw-h-10",
-    // md:
-    //   iconOnly && isMenu
-    //     ? "tw-text-xs tw-h-8"
-    //     : iconOnly
-    //     ? "tw-text-xs tw-h-8 tw-w-8"
-    //     : "tw-text-xs tw-h-8",
-    // sm:
-    //   iconOnly && isMenu
-    //     ? "tw-text-xs tw-h-6"
-    //     : iconOnly
-    //     ? "tw-text-xs tw-h-6 tw-w-6"
-    //     : "tw-text-xs tw-h-6",
   }[size];
 
   const typeClassName: Record<ButtonAppearances, string> = {
     primary: classNames("tw-border-solid tw-border-neutral-700 tw-border"),
-    // "tw-border-1 tw-border-black focus-visible:tw-bg-blue-700 dark:focus-visible:tw-bg-blue-600",
-    // disabled
-    //   ? "tw-opacity-40"
-    //   : "hover:tw-bg-blue-700 dark:hover:tw-bg-blue-600 active:tw-bg-blue-800 dark:active:tw-bg-blue-500",
-    // isMenu &&
-    //   isOpen &&
-    //   "tw-bg-blue-800 dark:tw-bg-blue-500 hover:tw-bg-blue-800 dark:hover:tw-bg-blue-500"
+    iconOnly: classNames("tw-border-none"),
   };
 
   return classNames(

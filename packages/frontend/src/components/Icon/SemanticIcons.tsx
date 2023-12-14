@@ -6,7 +6,7 @@ export type SemanticIconProps = Omit<any, "children">;
 
 export interface MenuIconProps extends SemanticIconProps {
   isOpen?: boolean;
-  buttonType?: "default" | "form-select";
+  buttonType?: "default" | "form-select" | "icon-only";
 }
 
 export const MenuIcon = ({

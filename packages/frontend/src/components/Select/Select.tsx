@@ -18,18 +18,20 @@ export type Changes = {
 };
 
 export type SelectProps = {
-  items: SelectItem[];
+  items: SelectItem[] | null;
   dataTestId?: string;
   onChange?: (changes: Changes) => void;
   selectedItem?: SelectItem | null;
   placeholder: string;
   children?: ReactNode;
+  updateSelectedItem: (item: SelectItem) => void;
 };
 
 export function Select({
   items,
   placeholder = "Select one",
   children,
+  updateSelectedItem,
 }: SelectProps): ReactElement {
   const [selectedItem, setSelectedItem] = React.useState<SelectItem | null>(
     null
@@ -42,11 +44,12 @@ export function Select({
     highlightedIndex,
     getItemProps,
   } = useSelect({
-    items: items,
+    items: items || [],
     onSelectedItemChange: ({ selectedItem: newSelectedItem }) => {
       if (newSelectedItem !== undefined) {
         setSelectedItem(newSelectedItem);
       }
+      updateSelectedItem(highlightedIndex);
     },
   });
 
@@ -61,19 +64,23 @@ export function Select({
           <MenuIcon isOpen={isOpen} />
         </div>
       </div>
-      <List style={{ height: "330px" }} isOpen={isOpen} {...getMenuProps()}>
-        {isOpen &&
-          items.map((item, index) => (
-            <ListItem
-              key={item.id}
-              {...getItemProps({ item, index })}
-              active={highlightedIndex === index}
-            >
-              <span>{item.name}</span>
-            </ListItem>
-          ))}
-        {children}
-      </List>
+      {!items ? (
+        <p>Loading</p>
+      ) : (
+        <List style={{ height: "330px" }} isOpen={isOpen} {...getMenuProps()}>
+          {isOpen &&
+            items.map((item, index) => (
+              <ListItem
+                key={item.id}
+                {...getItemProps({ item, index })}
+                active={highlightedIndex === index}
+              >
+                <span>{item.name}</span>
+              </ListItem>
+            ))}
+          {children}
+        </List>
+      )}
     </>
   );
 }

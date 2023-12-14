@@ -6,7 +6,7 @@ export const UserIcon: FC<IconProps> = ({
   ...props
 }: IconProps): ReactElement => {
   return (
-    <SvgIcon {...props} viewBox={"0 0 16 16"}>
+    <SvgIcon {...props} viewBox="0 0 24 24">
       <svg
         width="24"
         height="24"
