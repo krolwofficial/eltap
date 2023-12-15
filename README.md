@@ -1,11 +1,15 @@
-#ELTAP README 📚
+# ELTAP README 📚
 
-##Getting Started 🚀
-Open terminal in `./packages/backend` directory and run `npm install` and `node proxy.js` commands
-Open additional terminal in `./packages/frontend` directory and `run npm install` and `npm run dev` commands
+## Getting Started 🚀
 
-##Storybook 📖
-Open terminal in `./packages/frontend` directory and `run npm install` and `npm run storybook` commands
+1. Navigate and open terminal in `./packages/backend` directory and run `npm install` and `node proxy.js` commands
+2. Navigate and open additional terminal in `./packages/frontend` directory and run `npm install` and `npm run dev` commands
+3. Open app in your web browser at `http://localhost:3000`
 
-##Tests 🧪
-Open terminal in `./packages/frontend` directory and `run npm install` and `npm run test` commands
+## Storybook 📖
+
+Navigate and open terminal in `./packages/frontend` directory and run `npm install` and `npm run storybook` commands
+
+## Tests 🧪
+
+Navigate and open terminal in `./packages/frontend` directory and run `npm install` and `npm run test` commands
